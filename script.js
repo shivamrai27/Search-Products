@@ -1,9 +1,6 @@
-
-
 (async () => {
     const productContainerEl = document.getElementById('productContainer');
     const url = "https://fakestoreapi.com/products";
-
     const fetchProduct = async () => {
         try {
             const res = await fetch(url);
@@ -13,7 +10,6 @@
         }
     }
     const products = await fetchProduct();
-
     const generatedProducts = (product) => {
         return `
         <div class="product_card">
@@ -22,13 +18,12 @@
         </div>
         <div class="product_content">
             <h2>${product.title}</h2>
-            <p>${product.description}</p>
+            <p>${product.description.split(" ").slice(0, 20).join(" ")}</p>
             <button>$${product.price}</button>
         </div>
     </div>
         `
     }
-
     const renderProducts = (products) => {
         productContainerEl.innerHTML = "";
         products.forEach(product => {
